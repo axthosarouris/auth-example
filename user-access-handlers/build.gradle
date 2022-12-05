@@ -1,0 +1,37 @@
+plugins {
+    id 'nva.identity.service.java-application-conventions'
+}
+
+dependencies {
+
+    implementation libs.aws.java.sdk2.cognitoidp
+    implementation libs.aws.sdk2.urlconnection
+    implementation libs.nva.apigateway
+    implementation libs.nva.core
+    implementation libs.nva.lambdaauthorizer
+    implementation libs.nva.secrets
+    implementation libs.aws.lambda.events
+    implementation libs.bundles.aws.lambda
+    implementation libs.bundles.jackson
+    implementation libs.nva.json
+
+
+    implementation libs.aws.sdk2.secrets
+    implementation libs.aws.sdk2.dynamodbenhanced
+    implementation libs.aws.sdk2.dynamodb
+    implementation libs.aws.sdk2.urlconnection
+
+}
+
+test{
+    environment "USERS_AND_ROLES_TABLE", "UsersAndRolesTable"
+    environment "API_KEY_SECRET_NAME", "ApiKeySecretName"
+    environment "API_KEY_SECRET_KEY", "ApiKeySecretKey"
+    environment "AWS_REGION", "eu-west-1"
+    environment "API_DOMAIN", "localhost" //necessary to be localhost because of wiremock
+    environment "CUSTOMERS_TABLE_NAME", "CustomersTable"
+    environment "SIKT_CRISTIN_ID", "https://example.org/sikt/cristin/id"
+    environment "ID_NAMESPACE", "https://www.example.org/namespace/"
+    environment "CRISTIN_API_URL", "https://cristin.no"
+    environment "ALLOWED_ORIGIN", "*"
+}
